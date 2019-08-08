@@ -1,3 +1,3 @@
-import searchRoutes from "./search/routes";
+import {routes} from "./search/routes";
 
-export default [...searchRoutes];
+export default [...routes];

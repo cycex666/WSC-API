@@ -1,7 +1,7 @@
 import http from "http";
 import express from "express";
-import {applyMiddleware, applyRoutes} from "./utils";
-import routes from "./services";
+import {applyMiddleware, applyRoutes} from "./core";
+import routes from "./modules/routes";
 import middleware from "./middleware";
 import errorHandlers from "./middleware/errorHandlers";
 
@@ -17,7 +17,7 @@ process.on("unhandledRejection", e => {
 const router = express();
 applyMiddleware(middleware, router);
 applyRoutes(routes, router);
-applyMiddleware(errorHandlers,router);
+applyMiddleware(errorHandlers, router);
 const {PORT = 3000} = process.env;
 const server = http.createServer(router);
 

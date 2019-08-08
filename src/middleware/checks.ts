@@ -1,6 +1,6 @@
 
-import { Request, Response, NextFunction } from "express";
-import { HTTP400Error } from "../utils/httpErrors";
+import {Request, Response, NextFunction} from "express";
+import {HTTP400Error} from "../core/errors";
 
 export const checkSearchParams = (
   req: Request,
