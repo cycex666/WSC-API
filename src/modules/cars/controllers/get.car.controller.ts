@@ -6,17 +6,17 @@ import {HTTP400Error} from '../../../core/errors';
 import * as model from '../models';
 
 export const exec = async (req: Request, res: Response): Promise<void> => {
-	const {organisation} = req.params;
+	const {organisation, id} = req.params;
 
-	res.status(200).json({cars: await model.GetAll(organisation)});
+	res.status(200).json(await model.GetById(organisation, id));
 };
 
 export const validate = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-	const {carId, organisation} = req.params;
+	const {id, organisation} = req.params;
 
 	try {
 		ow(organisation, 'organisation', ow.string.nonEmpty);
-
+		ow(id, 'id', ow.string.nonEmpty);
 		next();
 	} catch (err) {
 		throw new HTTP400Error(err.message);
