@@ -8,11 +8,11 @@ import {
 
 import {handleAPIDocs} from './apiDocs';
 
-export default [
+export {
 	handleCors,
 	handleBodyRequestParsing,
 	handleCompression,
 	handleAPIDocs,
 	applyConfig,
 	setupDb
-];
+};

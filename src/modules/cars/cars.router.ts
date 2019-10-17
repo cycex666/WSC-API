@@ -15,6 +15,7 @@ export const routes: Route[] = [
 	{
 		path: '/:organisation/cars',
 		method: 'get',
+		authorize: true,
 		handler: [controller.getAll.validate, controller.getAll.exec]
 	},
 	{

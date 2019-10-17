@@ -2,12 +2,12 @@ import {Request, Response, NextFunction} from 'express';
 import ow from 'ow';
 
 import {HTTP400Error} from '../../../core/errors';
-
-import * as model from '../models';
+import {CarsModel} from '../models';
 
 export const exec = async (req: Request, res: Response): Promise<void> => {
 	const {params, body} = req;
 	const {organisation, id} = params;
+	const model = new CarsModel();
 
 	res.status(200).json(await model.Update(organisation, id, body));
 };

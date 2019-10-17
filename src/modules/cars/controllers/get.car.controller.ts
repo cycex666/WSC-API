@@ -3,10 +3,11 @@ import ow from 'ow';
 
 import {HTTP400Error} from '../../../core/errors';
 
-import * as model from '../models';
+import {CarsModel} from '../models';
 
 export const exec = async (req: Request, res: Response): Promise<void> => {
 	const {organisation, id} = req.params;
+	const model = new CarsModel();
 
 	res.status(200).json(await model.GetById(organisation, id));
 };

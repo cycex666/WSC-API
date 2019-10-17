@@ -28,3 +28,11 @@ export class HTTP404Error extends HTTPClientError {
 		super(message);
 	}
 }
+
+export class HTTP401Error extends HTTPClientError {
+	readonly statusCode = 401;
+
+	constructor(message: string | object = 'Invalid username or password') {
+		super(message);
+	}
+}

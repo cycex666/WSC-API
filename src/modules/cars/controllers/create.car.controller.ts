@@ -1,13 +1,13 @@
 import ow from 'ow';
 import {HTTP400Error} from '../../../core/errors';
 import {Request, Response, NextFunction} from 'express';
-import * as model from '../models';
-import bodyParser = require('body-parser');
+import {CarsModel} from '../models';
 
 export const exec = async (req: Request, res: Response): Promise<void> => {
 	const {params, body} = req;
 	const {organisation} = params;
-	console.log(body);
+	const model = new CarsModel();
+
 	res.status(200).json(await model.Insert(organisation, body));
 };
 

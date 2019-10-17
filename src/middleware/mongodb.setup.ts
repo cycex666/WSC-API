@@ -20,4 +20,4 @@ export const setupMongodb = (req: Request, res: Response, next: NextFunction) =>
 	});
 
 	next();
-}
+};

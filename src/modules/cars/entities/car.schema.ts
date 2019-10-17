@@ -1,4 +1,3 @@
-import {BaseSchema} from '../../../core';
 import {Schema} from 'mongoose';
 
 export const CarSchema = new Schema({
@@ -15,5 +14,3 @@ export const CarSchema = new Schema({
 		required: `Field 'brand' is required`
 	}
 });
-
-
