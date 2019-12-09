@@ -12,13 +12,12 @@ export const exec = async (req: Request, res: Response): Promise<void> => {
 	res.status(200).json(await model.GetById(organisation, id));
 };
 
-export const validate = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const validate = async (req: Request, res: Response): Promise<void> => {
 	const {id, organisation} = req.params;
 
 	try {
 		ow(organisation, 'organisation', ow.string.nonEmpty);
 		ow(id, 'id', ow.string.nonEmpty);
-		next();
 	} catch (err) {
 		throw new HTTP400Error(err.message);
 	}

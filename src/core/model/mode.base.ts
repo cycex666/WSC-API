@@ -10,7 +10,7 @@ export abstract class BaseModel<TEntity extends Object, TDocument extends Docume
 	}
 
 	async Insert(organisation: string, entity: TEntity): Promise<TDocument> {
-		return this.tableModel.create({...entity, organisation: `organisation_${organisation}`});
+		return this.tableModel.create({...entity, partitionKey: `organisation_${organisation}`});
 	}
 
 	async Update(organisation: string, id: string, entity: TEntity): Promise<TDocument | null> {

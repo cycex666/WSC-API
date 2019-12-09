@@ -7,4 +7,10 @@ export const routes: Route[] = [
 		method: 'post',
 		handler: [controller.login.validate, controller.login.exec]
 	},
+	{
+		path: '/:organisation/oauth/singup',
+		method: 'post',
+		authorize: true,
+		handler: [controller.signup.validate, controller.signup.exec]
+	}
 ];

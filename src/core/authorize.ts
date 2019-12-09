@@ -3,7 +3,7 @@ import * as jwtToken from 'jsonwebtoken';
 import {HTTP401Error} from './errors';
 import {config} from '../middleware/config.provider';
 
-export const authorize = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const authorize = async (req: Request, res: Response): Promise<void> => {
 	const {Secret} = config.OAuth;
 	let token = req.header('x-access-token') || req.header('authorization');
 	if (!token) {
@@ -18,7 +18,6 @@ export const authorize = async (req: Request, res: Response, next: NextFunction)
 		if (err) {
 			throw new HTTP401Error();
 		}
-
-		next();
 	});
+
 }

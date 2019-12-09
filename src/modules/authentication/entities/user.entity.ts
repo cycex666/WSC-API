@@ -1,10 +1,23 @@
-import {Document} from 'mongoose';
-import {EntityBase} from '../../../core/db';
+import {Document, Schema} from 'mongoose';
+import {EntityBase, BaseSchema} from '../../../core/db';
+import {UserRole} from '../enums/user-role.enum';
 
-export interface User extends EntityBase {
-
+export interface UserDTO {
+	firstName: string;
+	name: string;
+	email: string;
+	password: string;
 }
 
-export interface UserEntity extends User, Document {
-
+export interface User extends UserDTO, EntityBase {
+	activated: boolean;
+	role: UserRole;
+	createDate: string;
+	updateDate?: string;
 }
+
+export const UserSchema = new Schema({
+	...BaseSchema.obj
+});
+
+export interface UserEntity extends User, Document {}

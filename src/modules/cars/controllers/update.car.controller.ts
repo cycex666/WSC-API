@@ -12,7 +12,7 @@ export const exec = async (req: Request, res: Response): Promise<void> => {
 	res.status(200).json(await model.Update(organisation, id, body));
 };
 
-export const validate = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const validate = async (req: Request, res: Response): Promise<void> => {
 	const {params, body} = req;
 	const {id, organisation} = params;
 
@@ -24,8 +24,6 @@ export const validate = async (req: Request, res: Response, next: NextFunction):
 			carModel: ow.string.nonEmpty,
 			brand: ow.string.nonEmpty
 		}));
-
-		next();
 	} catch (err) {
 		throw new HTTP400Error(err.message);
 	}

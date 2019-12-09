@@ -62,10 +62,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-.env.test
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -89,3 +85,6 @@ typings/
 
 #Distributio Local files
 dist/
+
+#Documentation Local files
+docs/

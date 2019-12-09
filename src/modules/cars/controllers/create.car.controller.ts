@@ -11,9 +11,10 @@ export const exec = async (req: Request, res: Response): Promise<void> => {
 	res.status(200).json(await model.Insert(organisation, body));
 };
 
-export const validate = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const validate = async (req: Request, res: Response): Promise<void> => {
 	const {params, body} = req;
 	const {organisation} = params;
+
 	try {
 		ow(organisation, 'organisation', ow.string.nonEmpty);
 		ow(body, 'body', ow.object.nonEmpty.exactShape({
@@ -21,7 +22,6 @@ export const validate = async (req: Request, res: Response, next: NextFunction):
 			carModel: ow.string.nonEmpty,
 			brand: ow.string.nonEmpty
 		}));
-		next();
 	} catch (err) {
 		throw new HTTP400Error(err.message);
 	}

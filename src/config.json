@@ -1,9 +1,11 @@
 {
-	"MongoDB": {
-		"host": "mongodb+srv://wsc_api:1@ClicK666@mototech-dev-uguvw.mongodb.net/wsc_api_dev?retryWrites=true&w=majority"
-	},
-	"OAuth": {
-		"Secret": "somesecret",
-		"ExpirationTime": 86400
+	"development": {
+		"MongoDB": {
+			"host": "mongodb+srv://wsc_api:1@ClicK666@mototech-dev-uguvw.mongodb.net/wsc_api_dev?retryWrites=true&w=majority"
+		},
+		"OAuth": {
+			"Secret": "somesecret",
+			"ExpirationTime": 86400
+		}
 	}
 }

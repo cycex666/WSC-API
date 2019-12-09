@@ -1,3 +1,3 @@
-import {Request, Response, NextFunction} from 'express';
+import {Request, Response} from 'express';
 
-export type Handler = (req: Request, res: Response, next: NextFunction) => Promise<void> | void;
+export type Handler = (req: Request, res: Response) => Promise<void> | void;
