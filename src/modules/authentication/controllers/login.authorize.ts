@@ -1,12 +1,12 @@
-import ow from "ow";
+import ow from 'ow';
 import {
 	HTTP400Error,
 	HTTP401Error,
 	HTTPClientError
-} from "../../../core/errors";
-import { Response } from "express";
-import { Request } from "../entities";
-import { AuthenticationModel } from "../model";
+} from '../../../core/errors';
+import { Response } from 'express';
+import { Request } from '../entities';
+import { AuthenticationModel } from '../model';
 
 /**
  * @api {post} /oauth/login/
@@ -67,12 +67,13 @@ export const validate = async (
 ): Promise<void> => {
 	const { body } = req;
 
+	console.log(body);
+
 	try {
 		ow(
 			body,
-			"body",
+			'body',
 			ow.object.nonEmpty.exactShape({
-				organisation: ow.string.nonEmpty,
 				login: ow.string.nonEmpty,
 				password: ow.string.nonEmpty
 			})

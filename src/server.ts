@@ -1,38 +1,43 @@
-import * as dotenv from "dotenv";
-import http from "http";
-import express from "express";
-import { applyMiddleware, applyRoutes } from "./core";
-import { routes } from "./modules/routes";
-import * as path from "path";
-import * as middleware from "./middleware";
-import * as errorHandlers from "./middleware/errorHandlers";
+import * as dotenv from 'dotenv';
+import http from 'http';
+import express, { Express } from 'express';
+import { applyMiddleware, applyRoutes } from './core';
+import { routes } from './modules/routes';
+import * as path from 'path';
+import * as middleware from './middleware';
+import * as errorHandlers from './middleware/errorHandlers';
 
 export class App {
-	router = express();
+	router: Express;
 	server: http.Server;
 
 	constructor() {
-		const result = dotenv.config({ path: path.join(__dirname, ".env") });
+		this.router = express();
+		const result = dotenv.config({ path: path.join(__dirname, '.env') });
 
 		if (result.error) {
 			throw result.error.message;
 		}
 
-		this.server = this.initialize();
+		this.router = this.initialize();
 
-		const { PORT } = process.env;
+		const { PORT, NODE_ENV } = process.env;
 
-		this.server.listen(PORT, () =>
-			console.log(`Server is running http://localhost:${PORT}...`)
-		);
+		this.server = http.createServer(this.router);
+
+		if (NODE_ENV !== 'test') {
+			this.server.listen(PORT, () =>
+				console.log(`Server is running http://localhost:${PORT}...`)
+			);
+		}
 	}
 
-	initialize(): http.Server {
-		process.on("uncaughtException", e => {
+	initialize(): express.Express {
+		process.on('uncaughtException', e => {
 			console.log(e);
 			process.exit(1);
 		});
-		process.on("unhandledRejection", e => {
+		process.on('unhandledRejection', e => {
 			console.log(e);
 			process.exit(1);
 		});
@@ -41,7 +46,7 @@ export class App {
 		applyRoutes(routes, this.router);
 		applyMiddleware(Object.values(errorHandlers), this.router);
 
-		return http.createServer(this.router);
+		return this.router;
 	}
 }
 

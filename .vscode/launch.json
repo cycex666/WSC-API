@@ -10,10 +10,10 @@
 			"name": "Launch Program",
 			"program": "${workspaceFolder}/src/server.ts",
 			"preLaunchTask": "tsc: build - tsconfig.json",
-			"outFiles": ["${workspaceFolder}/**/*.js"],
+			"outFiles": ["${workspaceFolder}/**/*.ts"],
 			"env": {
 				"NODE_ENV": "development",
-				"PORT": "8080",
+				"PORT": "3000",
 				"TOKEN_KEY": "TEST",
 				"API_VERSION": "v1"
 			}

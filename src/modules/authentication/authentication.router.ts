@@ -1,4 +1,4 @@
-import {Route} from '../../core';
+import { Route } from '../../core';
 import * as controller from './controllers';
 
 export const routes: Route[] = [

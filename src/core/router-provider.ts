@@ -1,6 +1,6 @@
-import { Router, Request, Response, NextFunction } from "express";
-import { Route } from "./route";
-import { authorize } from "./authorize";
+import { Router, Request, Response, NextFunction } from 'express';
+import { Route } from './route';
+import { authorize } from './authorize';
 
 export const applyRoutes = (routes: Route[], router: Router) => {
 	for (const route of routes) {
@@ -21,7 +21,6 @@ export const applyRoutes = (routes: Route[], router: Router) => {
 				for (const func of handler) {
 					await func(req, res);
 				}
-				next();
 			}
 		);
 	}
